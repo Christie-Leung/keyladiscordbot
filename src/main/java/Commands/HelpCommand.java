@@ -24,7 +24,7 @@ public class HelpCommand extends BasicCommand {
                 "Hi, faggot!\n\nHere is a list of available commands. Type `!command` " +
                         "here or in a group chat to get detailed information on a " +
                         "command." + "\n```Markdown\n");
-        for (int i = 0; i < commandListener.getCommands().size(); i++) {
+  /*      for (int i = 0; i < commandListener.getCommands().size(); i++) {
      bob.append("\n[" + (i + 1) + "]: !" +
        commandListener.getCommands().get(i).getName() + "\n " +
        commandListener.getCommands().get(i).getShortDescription() + "\n");

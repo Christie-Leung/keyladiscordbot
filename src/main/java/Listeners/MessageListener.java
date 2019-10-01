@@ -1,6 +1,7 @@
 package Listeners;
 
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 public abstract class MessageListener extends ListenerAdapter {
 
-  /*  @Override
+    @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         MessageChannel channel = event.getChannel();
         String msg = event.getMessage().getContentRaw();
@@ -23,7 +24,7 @@ public abstract class MessageListener extends ListenerAdapter {
             channel.sendMessage("The message \"" + stringBuilder + "\" is sent by " + event.getAuthor().getName()).queue();
 
         }
-    }*/
+    }
 
     protected JDA jda;
 
@@ -33,12 +34,12 @@ public abstract class MessageListener extends ListenerAdapter {
         this.jda = jda;
     }
 
-    @Override
+  /*  @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         if (event.getAuthor().getId().equals(jda.getSelfUser().getId())) {
             return;
         }
-     /*   try {
+        try {
             if (event.isFromType(ChannelType.PRIVATE)) {
                 handlePrivateMessage(event);
             } else {
@@ -50,8 +51,10 @@ public abstract class MessageListener extends ListenerAdapter {
         } catch (Exception e) {
             e.printStackTrace();
             send(event, ":no_entry: Error: " + e.getMessage());
-        }*/
+        }
+
     }
+    */
 
 
     protected void send(MessageReceivedEvent event, String message) {
