@@ -24,18 +24,20 @@ public class KeylaBot extends ListenerAdapter {
                     }
                 })
                 .build();
-
+/*
         CommandListener commandListener = new CommandListener(jda);
         addCommands(commandListener);
         jda.addEventListener(commandListener);
+        */
 
      //   commands.add(new PingCommand());
     }
-
+/*
     private static void addCommands(CommandListener commandListener) {
         List<Object> commands = commandListener.getCommands();
         commands.add(new HelpCommand(commandListener));
         commands.add(new RepeatCommand());
     }
+    */
 
 }
