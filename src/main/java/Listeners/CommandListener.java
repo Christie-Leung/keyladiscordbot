@@ -1,10 +1,8 @@
 package Listeners;
 
 import Commands.BasicCommand;
-import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CommandListener extends MessageListener {
