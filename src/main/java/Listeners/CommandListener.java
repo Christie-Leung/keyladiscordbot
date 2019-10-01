@@ -8,16 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandListener extends MessageListener {
-
+/*
     private List<BasicCommand> commands = new ArrayList<BasicCommand>();
-
-    /**
-     * @param jda
-     */
+*/
+   /*
     public CommandListener(JDA jda) {
         super();
     }
-
+*/
     @Override
     public List<Object> getCommands() {
         return null;

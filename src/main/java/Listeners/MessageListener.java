@@ -4,13 +4,14 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public abstract class MessageListener extends ListenerAdapter {
 
     @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
+    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         MessageChannel channel = event.getChannel();
         String msg = event.getMessage().getContentRaw();
 
@@ -26,13 +27,13 @@ public abstract class MessageListener extends ListenerAdapter {
         }
     }
 
-    protected JDA jda;
+   /* protected JDA jda;
 
-    /**
-     */
+
     public MessageListener() {
         this.jda = jda;
     }
+    */
 
   /*  @Override
     public void onMessageReceived(MessageReceivedEvent event) {

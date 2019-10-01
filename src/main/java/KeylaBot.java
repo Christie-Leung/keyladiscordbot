@@ -1,6 +1,3 @@
-import Commands.HelpCommand;
-import Commands.RepeatCommand;
-import Listeners.CommandListener;
 import Listeners.MessageListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
