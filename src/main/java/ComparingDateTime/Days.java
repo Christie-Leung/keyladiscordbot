@@ -78,7 +78,7 @@ public class Days {
                         break;
                 }
             }
-        } else if(syear > nyear && comparedMonth < nowMonth) {
+        } else if(syear > nyear && comparedMonth < nowMonth || syear < nyear && comparedMonth > nowMonth) {
             int sMonth = comparedMonth + (12 - nowMonth);
             for (int i = sMonth; i < nowMonth; i--) {
                 switch (i) {

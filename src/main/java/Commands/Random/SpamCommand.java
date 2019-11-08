@@ -28,28 +28,33 @@ public class SpamCommand extends Command {
         user.openPrivateChannel().queue((channel) -> channel.sendMessage(content.build()).queue());
     }
 
+
     @Override
     protected void execute(CommandEvent event) {
 
         String[] items = event.getArgs().split("\\s+");
         if(items.length >= 1) {
             User user = event.getMessage().getMentionedUsers().get(0);
+            if(!user.getId().equals("301028982684516352")) {
 
-            event.reply("What do you want to spam them with?");
-            waiter.waitForEvent(MessageReceivedEvent.class,
-                    // make sure it's by the same user, and in the same channel, and for safety, a different message
-                    e -> e.getAuthor().equals(event.getAuthor())
-                            && e.getChannel().equals(event.getChannel())
-                            && !e.getMessage().equals(event.getMessage()),
-                    // respond, inserting the name they listed into the response
-                    e -> {
-                        for (int x = 0; x < 10; x++) {
-                            sendPrivateMessage(user, e.getMessage().getContentDisplay());
-                        }
-                    },
-                    // if the user takes more than a minute, time out
-                    1, TimeUnit.MINUTES, () -> event.reply("Sorry, you took too long."));
-            sendPrivateMessage(user, "hi");
+                event.reply("What do you want to spam them with?");
+                waiter.waitForEvent(MessageReceivedEvent.class,
+                        // make sure it's by the same user, and in the same channel, and for safety, a different message
+                        e -> e.getAuthor().equals(event.getAuthor())
+                                && e.getChannel().equals(event.getChannel())
+                                && !e.getMessage().equals(event.getMessage()),
+                        // respond, inserting the name they listed into the response
+                        e -> {
+                            for (int x = 0; x < 10; x++) {
+                                sendPrivateMessage(user, e.getMessage().getContentDisplay());
+                            }
+                        },
+                        // if the user takes more than a minute, time out
+                        1, TimeUnit.MINUTES, () -> event.reply("<@" + event.getAuthor().getId() + ">" + "Sorry, you took too long."));
+                sendPrivateMessage(user, "hi");
+            } else {
+                event.replyWarning("No you are not allowed to spam her >:V");
+            }
         } else {
             event.replyWarning("You stoopid");
         }

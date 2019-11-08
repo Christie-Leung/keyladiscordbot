@@ -13,7 +13,7 @@ public class MovieListSql {
 
         try {
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mydb", "root", "root");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
         } catch(SQLException e) {
             e.printStackTrace();
         }
@@ -23,7 +23,7 @@ public class MovieListSql {
     public static Connection getConn() {
         try {
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mydb", "root", "root");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
         } catch(SQLException e) {
             e.printStackTrace();
         }

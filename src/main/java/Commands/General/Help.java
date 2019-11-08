@@ -33,7 +33,7 @@ public class Help {
                 "\nRee - *Hmm I wonder what this does*" +
                 "\nClap - *claps duhh*" +
                 "\n8ball - *8ball*" +
-                "\nSchedule add [yyyy mm dd hh mm (description)] - *schedules an event*" +
+                "\nSchedule add [yyyy mm dd HH MM ss] - *schedules an event*" +
                 "\nSchedule delete [description] - *deletes a scheduled event*" +
                 "\nSchedule getAll - *gets all scheduled events*" +
                 "\nSchedule get [description]" +
