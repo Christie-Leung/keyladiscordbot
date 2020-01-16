@@ -33,8 +33,9 @@ public class SpamCommand extends Command {
     protected void execute(CommandEvent event) {
 
         String[] items = event.getArgs().split("\\s+");
-        if(items.length >= 1) {
+        if(items.length >= 2) {
             User user = event.getMessage().getMentionedUsers().get(0);
+            int number = Integer.parseInt(items[1]);
             if(!user.getId().equals("301028982684516352")) {
 
                 event.reply("What do you want to spam them with?");
@@ -45,7 +46,7 @@ public class SpamCommand extends Command {
                                 && !e.getMessage().equals(event.getMessage()),
                         // respond, inserting the name they listed into the response
                         e -> {
-                            for (int x = 0; x < 10; x++) {
+                            for (int x = 0; x < number; x++) {
                                 sendPrivateMessage(user, e.getMessage().getContentDisplay());
                             }
                         },

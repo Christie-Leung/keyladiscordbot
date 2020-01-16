@@ -1,4 +1,5 @@
 import Commands.Games.GuessNumber;
+import Commands.General.Roles;
 import Commands.Gifs.*;
 import Commands.People.KeylaCommand;
 import Commands.Random.*;
@@ -31,7 +32,7 @@ public class KeylaBot extends ListenerAdapter {
         MessageListener messageListener = new MessageListener();
         EventWaiter waiter = new EventWaiter();
 
-        String ownerId = "@!301028982684516352";
+
 
         CommandClientBuilder client = new CommandClientBuilder();
         client.setPrefix("!");
@@ -59,10 +60,11 @@ public class KeylaBot extends ListenerAdapter {
                 new PrayGif(),
                 new EightBallCommand(),
                 new MovieListCommand(waiter, movieListSql),
-                new GuessNumber(waiter)
+                new GuessNumber(waiter),
+                new Roles(waiter)
         );
 
-        new JDABuilder("NjI2NTg3Nzg0NTA4ODY2NjAw.XbJC8A.3bZfUdDTnIhDtW1bC2IKX2YcO6U")
+        new JDABuilder("NjI2NTg3Nzg0NTA4ODY2NjAw.XcT0aA.wZh4NajhyXoHEo9cMNMG4vOe34s")
                 .addEventListeners(messageListener, client.build(), waiter)
                 .build();
 

@@ -14,7 +14,7 @@ public class EightBallCommand extends Command {
     protected void execute(CommandEvent commandEvent) {
 
         int rando = (int) Math.floor(Math.random() * 10);
-        String decision = "";
+        String decision;
 
         switch (rando) {
             case 1:

@@ -9,4 +9,5 @@ class Strings {
     static String carterWrath = "__***THE WRATH OF CARTER BAGUETTE***__\n" +
             ":cloud_lightning: :fire: :oncoming_police_car: :police_car: :oncoming_police_car: :regional_indicator_c: :regional_indicator_a: :regional_indicator_r: :regional_indicator_t: :regional_indicator_e: :regional_indicator_r: :oncoming_police_car: :police_car: :oncoming_police_car: :fire: :cloud_lightning:";
     static String josh = "Yesssssssssssssssssssssssssss Jooooooooooooooooooooooooooooooooooooooooooooooooosh";
+    static String racuwu = "Yesssssssssssssssssssssss Racuwuwuwuwuwuwuwuwuwuwuwuwuwuwuwuwuwuwuwuwuwuwuwuwuwuwuwul";
 }

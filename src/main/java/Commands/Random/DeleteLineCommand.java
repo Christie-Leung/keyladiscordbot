@@ -11,6 +11,7 @@ public class DeleteLineCommand extends Command {
 
     public DeleteLineCommand() {
         this.name = "delete";
+        this.name = "deyeet";
         this.help = "delete u stoopid";
         this.arguments = "<integer>";
     }

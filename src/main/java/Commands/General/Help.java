@@ -14,6 +14,7 @@ public class Help {
         eb.addField("Commands", "Prefix is !", false);
         eb.addField("Peoples", "Racool - *says Yes Racool*" +
                 "\nServer - *says Yes ServerRakoolio*" +
+                "\nRacuwuw - *says Yes Racuwu*" +
                 "\nKeith - *says Yes Keith*" +
                 "\nCarter - *says Yes Carter*" +
                 "\nKeyla - *superior*", false);
