@@ -28,55 +28,112 @@ public class MessageListener extends ListenerAdapter {
         MessageChannel channel = event.getChannel();
         final Timer timer = new Timer("Timer");
         EmbedBuilder eb = new EmbedBuilder();
+        final LocalDateTime[] date = new LocalDateTime[1];
+        int year = LocalDateTime.now().getYear();
 
 
         TimerTask repeatedTask = new TimerTask() {
             public void run() {
                 List<String> schedule = ScheduleSql.getDate();
-                for (String str : schedule) {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                    LocalDateTime date = LocalDateTime.parse(str, formatter);
-                    if(LocalDateTime.now().isAfter(date)) {
-                        String description = ScheduleSql.getFromDate(Timestamp.valueOf(date)).getDescription();
+                if(!schedule.isEmpty()) {
+                    for (String str : schedule) {
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                        date[0] = LocalDateTime.parse(str, formatter);
+                    }
+                    if(LocalDateTime.now().isAfter(date[0])) {
+                        String description = ScheduleSql.getFromDate(Timestamp.valueOf(date[0])).getDescription();
                         long name = ScheduleSql.get(description).getNameID();
-                        LocalDateTime time = ScheduleSql.get(description).getTimestamp().toLocalDateTime();
                         ScheduleSql.delete(description);
                         User user = jda.getUserById(name);
-                        channel.sendMessage("Reminder! <@!" + name + ">\n").queue();
-                        channel.sendMessage(eb
-                                .setColor(new Color(177, 240, 216))
+                        eb.setColor(new Color(177, 240, 216))
                                 .addField("Reminder!", "I was told to remind you of " + description + "! Now go do it >:V", false)
-                                .build()).queue();
+                                .build();
                         if(user != null) {
-                            SpamCommand.sendPrivateEmbedMessage(user, calendar.compareDates(description, time));
+                            SpamCommand.sendPrivateEmbedMessage(user, eb);
                         }
                         ScheduleSql.delete(description);
                     }
                 }
+
             }
+
         };
         timer.scheduleAtFixedRate(repeatedTask, 0, 6000);
 
-        if(!event.getAuthor().isBot()) {
-            System.out.println("[" + event.getGuild().getName() + "] (" + event.getAuthor().getName() + ") - " + event.getMessage().getContentRaw());
+        if(!event.getAuthor().isBot() &&
+                event.isFromGuild()) {
+            User keyla = jda.getUserById("301028982684516352");
+            String msg;
+            if(keyla != null) {
+                if(event.getMessage().getContentRaw().contains("@!301028982684516352")) {
+                    msg = event.getMessage().getContentRaw().replace("@!301028982684516352", "me ping");
+                } else {
+                    msg = event.getMessage().getContentRaw();
+                }
+                SpamCommand.sendPrivateMessage(keyla, "[" + event.getGuild().getName() + ": " + event.getChannel().getName() + "] (" + event.getAuthor().getName() + ") - " + msg);
+            }
         }
+
+        String x = event.getMessage().getContentRaw().toLowerCase();
+        StringBuilder stringBuilder = new StringBuilder();
+
+        System.out.println(event.getMessage().getContentRaw());
+
         if(!event.getAuthor().isBot() && event.getMessage().getContentRaw().startsWith("!")) {
 
-            String x = event.getMessage().getContentRaw().toLowerCase();
-            StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(x);
             stringBuilder.deleteCharAt(0);
             String msg = stringBuilder.toString();
             int characters = stringBuilder.length();
 
-            channel.sendMessage("The message \"" + stringBuilder + "\" is sent by " + event.getAuthor().getName()).queue();
             if(characters <= 200) {
                 if(msg.startsWith("test")) {
                     channel.sendMessage("test").queue();
+                } else if(msg.equalsIgnoreCase(">:V")) {
+                    channel.sendMessage("<:latino:631336237197688833>").queue();
                 } else {
                     int roll = (int) Math.floor(Math.random() * 100) - 1;
                     switch (stringBuilder.toString()) {
                         // People
+                        case "die":
+                            channel.sendMessage("<:mercy_assassinate:631336123678982145>").queue();
+                            break;
+                        case "tea":
+                            channel.sendMessage("<:mercy_tea:631336204763398144>").queue();
+                            break;
+                        case "ew":
+                            channel.sendMessage("<:keylastupidface:630989473554890752>").queue();
+                            break;
+                        case "catblob":
+                            channel.sendMessage("<a:meow:667208085533753344>").queue();
+                            break;
+                        case "pepepagun":
+                            channel.sendMessage("<a:PepegaGun:667211084595462165>").queue();
+                            break;
+                        case "peepoclap":
+                            channel.sendMessage("<a:peepoClap:667211297573568552>").queue();
+                            break;
+                        case "feelsrainman":
+                            channel.sendMessage("<a:FeelsRainMan:667211370466377760>").queue();
+                            break;
+                        case "hackermans":
+                            channel.sendMessage("<a:HACKERMANS:667211334638764043>").queue();
+                            break;
+                        case "firepanda":
+                            channel.sendMessage("<a:FirePanda:667209510745669662>").queue();
+                            break;
+                        case "kirbdance":
+                            channel.sendMessage("<a:KirbDance:667211208020983809>").queue();
+                            break;
+                        case "monkaextreme":
+                            channel.sendMessage("<a:monkaExtreme:667211256347885578>").queue();
+                            break;
+                        case "monkaomega":
+                            channel.sendMessage("<a:monkaOmega:667211149057589251>").queue();
+                            break;
+                        case "racuwu":
+                            channel.sendMessage(Strings.racuwu).tts(true).queue();
+                            break;
                         case "racool":
                             channel.sendMessage(Strings.racool).tts(true).queue();
                             break;
@@ -107,20 +164,22 @@ public class MessageListener extends ListenerAdapter {
                             channel.sendMessage(Strings.ree).tts(true).queue();
                             break;
                         case "christmas":
-                            channel.sendMessage(calendar.compareDates("Christmas Countdown", LocalDateTime.of(2019, 12, 25, 0, 0, 0)).build()).queue();
+                            channel.sendMessage(calendar.compareDates("Christmas Countdown", LocalDateTime.of(year, 12, 25, 0, 0, 0)).build()).queue();
                             break;
                         case "halloween":
-                            channel.sendMessage(calendar.compareDates("Halloween Countdown", LocalDateTime.of(2019, 10, 31, 0, 0, 0)).build()).queue();
+                            channel.sendMessage(calendar.compareDates("Halloween Countdown", LocalDateTime.of(year, 10, 31, 0, 0, 0)).build()).queue();
                             break;
-                        default:
+                      /*  default:
                             channel.sendMessage(msg).tts(true).queue();
-                            break;
+                            break;*/
 
                     }
                 }
+            } else if(msg.contains("roblox") || msg.contains("fuck") || msg.contains("fornite")) {
+                channel.deleteMessageById(channel.getLatestMessageId()).queue();
             } else {
                 channel.sendMessage("```This exceeds the character limit```").queue();
-                channel.sendMessage("Your msg has " + characters + " charcaters!").queue();
+                channel.sendMessage("Your msg has " + characters + " characters!").queue();
             }
 
         }
