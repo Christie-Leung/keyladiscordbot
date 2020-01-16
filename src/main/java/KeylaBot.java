@@ -1,4 +1,5 @@
 import Commands.Games.GuessNumber;
+import Commands.General.Channels;
 import Commands.General.Roles;
 import Commands.Gifs.*;
 import Commands.People.KeylaCommand;
@@ -8,6 +9,7 @@ import Commands.Random.MovieList.MovieListSql;
 import ComparingDateTime.ScheduleSql;
 import ComparingDateTime.Timezones.TimezoneSql;
 import ComparingDateTime.Timezones.Timezones;
+import Secrets.PrivateInfo;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import net.dv8tion.jda.api.JDABuilder;
@@ -32,11 +34,9 @@ public class KeylaBot extends ListenerAdapter {
         MessageListener messageListener = new MessageListener();
         EventWaiter waiter = new EventWaiter();
 
-
-
         CommandClientBuilder client = new CommandClientBuilder();
         client.setPrefix("!");
-        client.setOwnerId(ownerId);
+        client.setOwnerId(PrivateInfo.ownerId);
         client.setActivity(Activity.watching("you"));
         client.addCommands(
                 new KeylaCommand(),
@@ -61,10 +61,11 @@ public class KeylaBot extends ListenerAdapter {
                 new EightBallCommand(),
                 new MovieListCommand(waiter, movieListSql),
                 new GuessNumber(waiter),
-                new Roles(waiter)
+                new Roles(waiter),
+                new Channels()
         );
 
-        new JDABuilder("NjI2NTg3Nzg0NTA4ODY2NjAw.XcT0aA.wZh4NajhyXoHEo9cMNMG4vOe34s")
+        new JDABuilder(PrivateInfo.botToken)
                 .addEventListeners(messageListener, client.build(), waiter)
                 .build();
 
